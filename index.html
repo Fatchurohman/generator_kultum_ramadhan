@@ -1,1 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Kultum Ramadhan Lengkap</title>
+    <style>
+        :root {
+            --bg-primary: #0a2f1d;
+            --bg-secondary: #124029;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --text-light: #ffffff;
+            --text-dark: #111111;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--bg-secondary), #061c11);
+            border: 2px solid var(--accent-gold);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .developer-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--accent-gold-light);
+            background: rgba(0,0,0,0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .live-dot {
+            width: 14px;
+            height: 8px;
+            background-color: #ff3333;
+            border-radius: 50%;
+            display: inline-block;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 8px #ff3333;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .filter-container {
+            margin-bottom: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--bg-primary);
+            color: var(--accent-gold-light);
+            border: 1px solid var(--accent-gold);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .item-list {
+            list-style: none;
+        }
+
+        .item-list li {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .item-list li:hover, .item-list li.active {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+
+        .main-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 25px;
+            min-height: 85vh;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: var(--accent-gold);
+            color: var(--text-dark);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content-title {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--accent-gold);
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+
+        .redaksi-box {
+            background: rgba(0,0,0,0.25);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-gold);
+            line-height: 1.9;
+            margin-bottom: 20px;
+            white-space: pre-line;
+            font-size: 1.05rem;
+        }
+
+        .arabic-block {
+            font-family: 'Traditional Arabic', 'Amiri', 'Scheherazade', serif;
+            font-size: 1.6rem;
+            direction: rtl;
+            text-align: right;
+            margin: 15px 0;
+            color: var(--accent-gold-light);
+            line-height: 2.2;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 5px;
+            border-right: 3px solid var(--accent-gold);
+        }
+
+        .dalil-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px dashed var(--accent-gold);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37, #f3e5ab);
+            color: var(--text-dark);
+        }
+
+        .btn-gold:hover {
+            filter: brightness(1.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: var(--accent-gold-light);
+        }
+
+        @media print {
+            body {
+                background-color: #fff;
+                color: #000;
+            }
+            header, .sidebar, .tab-buttons, .action-buttons, .filter-container {
+                display: none !important;
+            }
+            .container {
+                display: block;
+            }
+            .main-content {
+                border: none;
+                background: #fff;
+                color: #000;
+                padding: 0;
+            }
+            .content-title {
+                color: #000;
+            }
+            .redaksi-box {
+                background: #fff;
+                color: #000;
+                border-left: 2px solid #000;
+            }
+            .arabic-block {
+                color: #000;
+                background: #f9f9f9;
+                border-right: 3px solid #000;
+            }
+            .dalil-box {
+                background: #fff;
+                color: #000;
+                border: 1px solid #000;
+            }
+            .badge {
+                border: 1px solid #000;
+                background: #fff;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Generator Kultum Ramadhan (Lengkap 10 Menit)</h1>
+        <div class="developer-tag">
+            <span class="live-dot"></span>
+            <span>developer : fatur62</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="filter-container">
+                <select id="categoryFilter">
+                    <option value="ALL">-- Semua Kategori (60 Judul) --</option>
+                    <option value="Aqidah">Aqidah (1-9)</option>
+                    <option value="Ibadah">Ibadah (10-18)</option>
+                    <option value="Muamalah">Muamalah (19-26)</option>
+                    <option value="Akhlak">Akhlak (27-34)</option>
+                    <option value="Jinayat">Jinayat (35-42)</option>
+                    <option value="Siyasah">Siyasah (43-50)</option>
+                    <option value="Nuzulul Quran">Nuzulul Qur'an (51-55)</option>
+                    <option value="Idul Fitri">Idul Fitri (56-60)</option>
+                </select>
+            </div>
+            <ul class="item-list" id="kultumList"></ul>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <div class="empty-state">
+                <h2>Pilih Judul Kultum</h2>
+                <p>Silakan pilih salah satu dari 60 judul kultum untuk menampilkan uraian naskah lengkap (durasi 7-10 menit) beserta teks Arab berharakat dan pilihan redaksinya.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const arabicMukadimah1 = "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ، وَالصَّلاَةُ وَالسَّلاَمُ عَلَى أَشْرَفِ الأَنْبِيَاءِ وَالْمُرْسَلِينَ، سَيِّدِنَا وَمَوْلاَنَا مُحَمَّدٍ وَعَلَى آلِهِ وَصَحْبِهِ أَجْمَعِينَ، أَمَّا بَعْدُ:";
+        const arabicMukadimah2 = "الْحَمْدُ لِلَّهِ الَّذِي هَدَانَا لِهَذَا وَمَا كُنَّا لِنَهْتَدِيَ لَوْلاَ أَنْ هَدَانَا اللَّهُ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ لاَ نَبِيَّ بَعْدَهُ، أَمَّا بَعْدُ:";
+        const arabicPenutup = "بَارَكَ اللَّهُ لِي وَلَكُمْ فِي الْقُرْآنِ الْعَظِيمِ، وَنَفَعَنِي وَإِيَّاكُمْ بِمَا فِيهِ مِنَ الآيَاتِ وَالذِّكْرِ الْحَكِيمِ. وَقُلْ رَبِّ اغْفِرْ وَارْحَمْ وَأَنْتَ خَيْرُ الرَّاحِمِينَ.";
+
+        function buildFullScript(item, redaksiTipe) {
+            if (!item) return '';
+            
+            if (redaksiTipe === 1) {
+                return `Assalamu'alaikum Warahmatullahi Wabarakatuh.
+
+${arabicMukadimah1}
+
+Jamaah shalat dan kultum Ramadhan yang dirahmati Allah SWT,
+
+Puji dan syukur marilah kita panjatkan kehadirat Allah SWT yang telah memberikan kita nikmat iman, Islam, serta kesempatan untuk berada di bulan suci Ramadhan yang penuh berkah ini. Shalawat serta salam semoga senantiasa tercurah kepada junjungan kita Nabi Agung Muhammad SAW, keluarga, sahabat, dan pengikutnya hingga akhir zaman.
+
+Pada kesempatan yang mulia ini, materi ceramah yang akan kita kaji bersama mengangkat tema: "${item.j}".
+
+Hadirin yang dimuliakan Allah,
+Tema ini tergolong ke dalam aspek ${item.k} yang sangat krusial dalam kehidupan seorang muslim. Landasan utama pembahasan ini telah ditegaskan oleh Allah SWT dan Rasul-Nya melalui nash Al-Qur'an dan Hadits berikut:
+
+${item.arab}
+
+Artinya:
+"${item.d}"
+
+Dari dalil yang agung tersebut, kita dapat memahami bahwa ${item.t}. Para ulama menjelaskan bahwa ${item.p}. 
+
+Imam Hasan al-Bashri rahimahullah pernah memberikan pencerahan terkait hal ini:
+"${item.u}"
+
+Hadirin wal jamaah rahimakumullah,
+Mengapa poin ini menjadi sangat vital, khususnya di bulan Ramadhan? Karena di bulan yang mulia ini, setiap amalan kita dilipatgandakan nilainya di sisi Allah SWT. Ketika kita menjalankan ibadah puasa, kita tidak hanya dituntut untuk menahan lapar dan dahaga, tetapi juga disyariatkan untuk memperbaiki kualitas ${item.k} kita secara menyeluruh.
+
+Ada tiga langkah praktis yang bisa kita terapkan selama bulan Ramadhan ini:
+
+Pertama, Melakukan Evaluasi Diri (Muhasabah). Jangan sampai hari-hari Ramadhan berlalu tanpa ada perubahan nyata dalam sikap, ibadah, dan pola pikir kita.
+Kedua, Memperdalam Ilmu Syar'i. Pemahaman yang benar terhadap dalil akan melahirkan pengamalan yang ikhlas dan sesuai tuntunan sunnah.
+Ketiga, Istiqamah. Amalan yang dilakukan secara berkesinambungan jauh lebih dicintai oleh Allah daripada amalan besar yang hanya dikerjakan sesekali.
+
+Sebagai penutup, marilah kita senantiasa memohon petunjuk dan kekuatan dari Allah SWT agar kita dijadikan hamba-hamba-Nya yang berhasil memetik hikmah dan keampunan Ramadhan secara utuh.
+
+${arabicPenutup}
+
+Wabillahi taufiq wal hidayah,
+Wassalamu'alaikum Warahmatullahi Wabarakatuh.`;
+            } else {
+                return `Assalamu'alaikum Warahmatullahi Wabarakatuh.
+
+${arabicMukadimah2}
+
+Hadirin dan jamaah sekalian yang dirahmati oleh Allah SWT,
+
+Pertama-tama, marilah kita tingkatkan ketakwaan kita kepada Allah SWT dengan ketakwaan yang sebenar-benarnya, yaitu dengan menjalankan segala perintah-Nya dan menjauhi segala larangan-Nya. Lebih-lebih di dalam bulan suci Ramadhan yang penuh dengan pengampunan dan rahmat ini.
+
+Kultum kita pada kesempatan kali ini mengangkat topik penting, yaitu: "${item.j}".
+
+Para jamaah yang berbahagia,
+Dalam kajian bidang ${item.k}, persoalan ini memegang peranan yang sangat fundamental. Rasulullah SAW dan Al-Qur'anul Karim telah memberikan petunjuk yang terang benderang:
+
+${item.arab}
+
+Maksud dan terjemahan dalil tersebut adalah:
+"${item.d}"
+
+Penjelasan mendalam mengenai rujukan di atas sebagaimana disampaikan oleh para ulama syarah bahwa: ${item.p}.
+
+Prinsip ${item.t} ini juga sangat selaras dengan nasihat pencerahan dari ulama salaf/halaf yang menegaskan:
+"${item.u}"
+
+Hadirin yang dirahmati Allah,
+Di tengah kompleksitas kehidupan modern saat ini, penerapan pesan moral di atas sering kali menghadapi tantangan yang tidak ringan. Oleh karena itu, Ramadhan hadir sebagai madrasah rohani untuk membentuk kembali disiplin dan karakter keimanan kita.
+
+Di antara hikmah terbesar yang bisa kita petik dan amalkan adalah:
+1. Membentengi diri dan keluarga dari pengaruh negatif lingkungan sekitar.
+2. Menjadikan ibadah puasa sebagai sarana penyucian jiwa dan pembenahan hubungan antar sesama manusia.
+3. Menumbuhkan rasa empati sosial serta ketaatan hukum dalam kehidupan sehari-hari.
+
+Semoga Allah SWT menerima seluruh rangkaian ibadah puasa, shalat malam, dan amal saleh kita, serta membimbing kita menjadi pribadi yang jauh lebih bertakwa setelah Ramadhan berlalu.
+
+Aamiin Ya Rabbal 'Alamin.
+
+${arabicPenutup}
+
+Wassalamu'alaikum Warahmatullahi Wabarakatuh.`;
+            }
+        }
+
+        const kultumData = [
+            // AQIDAH (1-9)
+            { id: 1, k: "Aqidah", j: "Pembersihan Jiwa Melalui Tauhid di Bulan Ramadhan", arab: "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ كُتِبَ عَلَيْكُمُ ٱلصِّيَامُ كَمَا كُتِبَ عَلَى ٱلَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ", d: "Wahai orang-orang yang beriman, diwajibkan atas kamu berpuasa sebagaimana diwajibkan atas orang-orang sebelum kamu agar kamu bertakwa. (QS. Al-Baqarah: 183)", t: "pemurnian tauhid dari segala bentuk kesyirikan", p: "Puasa adalah ibadah rahasia yang melatih kejujuran iman hanya kepada Allah", u: "Iman itu tidak cukup hanya dengan angan-angan, melainkan apa yang menancap di dalam hati dan dibuktikan dengan amal." },
+            { id: 2, k: "Aqidah", j: "Meningkatkan Iman dan Taqwa Melalui Puasa", arab: "وَسَارِعُوا إِلَىٰ مَغْفِرَةٍ مِّن رَّبِّكُمْ وَجَنَّةٍ عَرْضُهَا السَّمَاوَاتُ وَالْأَرْضُ أُعِدَّتْ لِلْمُتَّقِينَ", d: "Dan bersegeralah kamu kepada ampunan dari Tuhanmu dan kepada surga yang luasnya seluas langit dan bumi yang disediakan untuk orang-orang yang bertakwa. (QS. Ali Imran: 133)", t: "proses pembentukan derajat muttaqin", p: "Taqwa adalah benteng utama seorang muslim dari godaan maksiat", u: "Taqwa adalah rasa takut kepada Allah yang Maha Agung, beramal dengan Al-Qur'an, dan ridha dengan yang sedikit." },
+            { id: 3, k: "Aqidah", j: "Mengenal Allah Melalui Asmaul Husna Saat Berpuasa", arab: "وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا", d: "Hanya milik Allah asma-ul husna, maka bermohonlah kepada-Nya dengan menyebut asma-ul husna itu. (QS. Al-A'raf: 180)", t: "penghayatan nama dan sifat Allah", p: "Meneladani sifat Ar-Rahman dan Ar-Rahim dalam interaksi sosial saat puasa", u: "Barangsiapa menghafal dan menghayati Asmaul Husna maka ia akan masuk surga." },
+            { id: 4, k: "Aqidah", j: "Menjaga Keikhlasan Niat di Bulan Suci", arab: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى", d: "Sesungguhnya setiap amalan tergantung pada niatnya, dan setiap orang akan mendapatkan sesuai apa yang diniatkannya. (HR. Bukhari & Muslim)", t: "penataan niat ibadah secara murni", p: "Niat adalah Ruh dari setiap amal perbuatan manusia", u: "Berapa banyak amal kecil menjadi besar karena niat, dan amal besar menjadi kecil karena niat." },
+            { id: 5, k: "Aqidah", j: "Bahaya Syirik Khafi (Tersembunyi) Saat Beribadah", arab: "فَمَن كَانَ يَرْجُو لِقَاءَ رَبِّهِ فَلْيَعْمَلْ عَمَلًا صَالِحًا وَلَا يُشْرِكْ بِعِبَادَةِ رَبِّهِ أَحَدًا", d: "Barangsiapa mengharap perjumpaan dengan Tuhannya, maka hendaklah ia mengerjakan amal yang saleh dan janganlah ia mempersekutukan seorangpun dalam beribadah kepada Tuhannya. (QS. Al-Kahf: 110)", t: "penjagaan dari riya' dan ujub", p: "Riya' merusak pahala ibadah puasa dan tarawih secara perlahan", u: "Syirik khafi lebih samar daripada langkah semut hitam di atas batu hitam pada malam gelap." },
+            { id: 6, k: "Aqidah", j: "Meyakini Janji Allah Bagi Orang yang Berpuasa", arab: "مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", d: "Barangsiapa berpuasa Ramadhan karena iman dan mengharap pahala, diampuni dosa-dosanya yang telah lalu. (HR. Bukhari)", t: "keyakinan akan pengampunan dosa", p: "Iman dan ihtisab menjadi syarat mutlak terhapusnya dosa masa lalu", u: "Ihtisab artinya mengharap pahala hanya dari Allah tanpa mengeluh." },
+            { id: 7, k: "Aqidah", j: "Merasakan Pengawasan Allah (Ihsan) Dalam Puasa", arab: "أَنْ تَعْبُدَ اللَّهَ كَأَنَّكَ تَرَاهُ فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاكَ", d: "Ihsan adalah engkau beribadah kepada Allah seolah-olah engkau melihat-Nya. Jika engkau tidak melihat-Nya, maka sesungguhnya Dia melihatmu. (HR. Muslim)", t: "kesadaran muroqobah kepada Allah", p: "Puasa melatih kesadaran bahwa Allah senantiasa mengawasi tiap detik kehidupan kita", u: "Muroqobah adalah kunci kebersihan hati hamba-hamba pilihan Allah." },
+            { id: 8, k: "Aqidah", j: "Iman Kepada Kitabullah dan Nuzulul Qur'an", arab: "شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ وَبَيِّنَاتٍ مِّنَ الْهُدَىٰ وَالْفُرْقَانِ", d: "Bulan Ramadhan adalah (bulan) yang di dalamnya diturunkan Al-Qur'an sebagai petunjuk bagi manusia dan penjelasan-penjelasan mengenai petunjuk itu dan pembeda. (QS. Al-Baqarah: 185)", t: "pengagungan terhadap wahyu Allah", p: "Al-Qur'an diturunkan sebagai petunjuk pembeda antara haq dan bathil", u: "Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya." },
+            { id: 9, k: "Aqidah", j: "Konsep Tawakal Dalam Menjalani Ibadah Ramadhan", arab: "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ", d: "Dan barangsiapa yang bertawakal kepada Allah niscaya Allah akan mencukupkan (keperluan)nya. (QS. At-Talaq: 3)", t: "penyerahan diri penuh kepada takdir Allah", p: "Tawakal melahirkan ketenangan rohani dalam menghadapi ujian puasa", u: "Jika kalian bertawakal dengan sebenar-benarnya, Allah akan memberi rezeki seperti burung." },
+
+            // IBADAH (10-18)
+            { id: 10, k: "Ibadah", j: "Hikmah dan Fiqih Praktis Puasa Ramadhan", arab: "أَيَّامًا مَّعْدُودَاتٍ ۚ فَمَن كَانَ مِنكُم مَّرِيضًا أَوْ عَلَىٰ سَفَرٍ فَعِدَّةٌ مِّنْ أَيَّامٍ أُخَرَ", d: "(Yaitu) dalam beberapa hari yang tertentu. Maka barangsiapa di antara kamu ada yang sakit atau dalam perjalanan (lalu ia berbuka), maka (wajiblah baginya berpuasa) sebanyak hari yang ditinggalkan itu pada hari-hari yang lain. (QS. Al-Baqarah: 184)", t: "pemahaman keabsahan ibadah puasa", p: "Fiqih mengajarkan kita batasan syarat, rukun, dan hal yang membatalkan puasa", u: "Menuntut ilmu fiqih ibadah adalah kewajiban sebelum melakukan amalan." },
+            { id: 11, k: "Ibadah", j: "Menggapai Keutamaan Malam Lailatul Qadar", arab: "لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ", d: "Malam kemuliaan itu lebih baik dari seribu bulan. (QS. Al-Qadr: 3)", t: "pencarian malam yang lebih baik dari 1000 bulan", p: "Ibadah pada malam Lailatul Qadar bernilai melampaui usia manusia", u: "Carilah Lailatul Qadar pada malam-malam ganjil di sepuluh hari terakhir Ramadhan." },
+            { id: 12, k: "Ibadah", j: "Keutamaan dan Adab Shalat Tarawih", arab: "مَنْ قَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", d: "Barangsiapa mendirikan shalat malam di bulan Ramadhan karena iman dan mengharap pahala, diampuni dosa-dosanya yang telah lalu. (HR. Bukhari)", t: "penegakan shalat malam secara khusyu'", p: "Qiyamu Ramadhan mengikis beban dosa dan menguatkan jiwa", u: "Shalatlah sebagaimana kalian melihat aku shalat dengan tumaninah." },
+            { id: 13, k: "Ibadah", j: "Pentingnya Menjaga Shalat Fardhu Sebelum Sunnah", arab: "إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا", d: "Sesungguhnya shalat itu adalah kewajiban yang ditentukan waktunya atas orang-orang yang beriman. (QS. An-Nisa: 103)", t: "prioritas amalan wajib atas sunnah", p: "Shalat fardhu adalah pokok agama yang pertama kali dihisab di hari kiamat", u: "Tidaklah hamba-Ku mendekatkan diri dengan sesuatu yang lebih Ku-cintai daripada amalan wajib." },
+            { id: 14, k: "Ibadah", j: "Keberkahan Dalam Makan Sahur", arab: "تَسَحَّرُوا فَإِنَّ فِي السَّحُورِ بَرَكَةً", d: "Makan sahurlah kalian, karena sesungguhnya pada makan sahur itu terdapat keberkahan. (HR. Bukhari & Muslim)", t: "pengamalan sunnah sahur", p: "Sahur memberi kekuatan fisik dan keberkahan doa menjelang subuh", u: "Makan sahur adalah pembeda antara puasa kita dan puasa ahli kitab." },
+            { id: 15, k: "Ibadah", j: "Adab dan Anjuran Menyegerakan Berbuka", arab: "لاَ يَزَالُ النَّاسُ بِخَيْرٍ مَا عَجَّلُوا الْفِطْرَ", d: "Manusia senantiasa berada dalam kebaikan selama mereka menyegerakan berbuka puasa. (HR. Bukhari & Muslim)", t: "kedisiplinan waktu berbuka puasa", p: "Menyegerakan buka puasa saat maghrib tiba adalah bentuk ketaatan sunnah", u: "Berdoa saat berbuka adalah salah satu waktu doa paling mustajab." },
+            { id: 16, k: "Ibadah", j: "Keutamaan Itikaf di Masjid pada 10 Hari Terakhir", arab: "أَنَّ النَّبِيَّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ كَانَ يَعْتَكِفُ الْعَشْرَ الأَوَاخِرَ مِنْ رَمَضَانَ", d: "Bahwa Nabi SAW biasa beritikaf pada sepuluh hari terakhir dari bulan Ramadhan. (HR. Bukhari)", t: "penyucian hati dari kesibukan dunia", p: "Itikaf memfokuskan pikiran hanya untuk berzikir dan beribadah di rumah Allah", u: "Itikaf adalah sarana pemutusan hubungan sementara dengan kesibukan dunia." },
+            { id: 17, k: "Ibadah", j: "Panduan Zakat Fitrah dan Pembagiannya", arab: "فَرَضَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ زَكَاةَ الْفِطْرِ طُهْرَةً لِلصَّائِمِ مِنَ اللَّغْوِ وَالرَّفَثِ", d: "Rasulullah SAW mewajibkan zakat fitrah sebagai pembersih bagi orang yang berpuasa dari perbuatan sia-sia dan kata-kata kotor. (HR. Abu Dawud)", t: "pembersihan harta dan jiwa", p: "Zakat fitrah menyucikan kekhilafan puasa dan membahagiakan dhuafa", u: "Zakat fitrah menjamin ketersediaan pangan bagi fakir miskin di hari raya." },
+            { id: 18, k: "Ibadah", j: "Meningkatkan Kuantitas dan Kualitas Tilawah", arab: "إِنَّ الَّذِينَ يَتْلُونَ كِتَابَ اللَّهِ وَأَقَامُوا الصَّلَاةَ وَأَنفَقُوا مِمَّا رَزَقْنَاهُمْ سِرًّا وَعَلَانِيَةً يَرْجُونَ تِجَارَةً لَّن تَبُورَ", d: "Sesungguhnya orang-orang yang selalu membaca kitab Allah dan mendirikan shalat dan menafkahkah sebagian rezeki... mereka itu mengharapkan perdagangan yang tidak akan rugi. (QS. Fatir: 29)", t: "interaksi rutin bersama Al-Qur'an", p: "Membaca Al-Qur'an dengan tadabbur memberikan syafaat di hari kiamat", u: "Bacalah Al-Qur'an karena ia akan datang memberi syafaat bagi pembacanya." },
+
+            // MUAMALAH (19-26)
+            { id: 19, k: "Muamalah", j: "Etika Bisnis dan Perdagangan di Bulan Ramadhan", arab: "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ لَا تَأْكُلُوٓا۟ أَمْوَٰلَكُم بَيْنَكُم بِٱلْبَٰطِلِ إِلَّآ أَن تَكُونَ تِجَٰرَةً عَن تَرَاضٍ مِّنكُمْ", d: "Wahai orang-orang yang beriman, janganlah kamu saling memakan harta sesamamu dengan jalan yang batil, kecuali dengan jalan perdagangan yang berlaku dengan suka sama-suka di antara kamu. (QS. An-Nisa: 29)", t: "kejujuran dalam transaksi keuangan", p: "Ramadhan mengajarkan para pedagang untuk jujur dan tidak mengurangi timbangan", u: "Pedagang yang jujur dan terpercaya akan dikumpulkan bersama para nabi." },
+            { id: 20, k: "Muamalah", j: "Indahnya Berbagi Melalui Sedekah dan Infak", arab: "أَفْضَلُ الصَّدَقَةِ صَدَقَةٌ فِي رَمَضَانَ", d: "Sedekah yang paling utama adalah sedekah di bulan Ramadhan. (HR. Tirmidzi)", t: "kedermawanan sosial", p: "Sedekah di bulan Ramadhan melipatgandakan rezeki dan menghapus dosa", u: "Sedekah tidak akan mengurangi harta, melainkan melipatgandakannya." },
+            { id: 21, k: "Muamalah", j: "Menjauhi Riba dan Harta Haram Agar Puasa Diterima", arab: "وَأَحَلَّ اللَّهُ الْبَيْعَ وَحَرَّمَ الرِّبَا", d: "Padahal Allah telah menghalalkan jual beli dan mengharamkan riba. (QS. Al-Baqarah: 275)", t: "kebersihan konsumsi dari harta haram", p: "Harta haram menghalangi terkabulnya doa dan rusaknya amalan puasa", u: "Setiap daging yang tumbuh dari harta haram maka neraka lebih utama baginya." },
+            { id: 22, k: "Muamalah", j: "Anjuran Membayar Hutang Sebelum Hari Raya", arab: "نَفْسُ الْمُؤْمِنِ مُعَلَّقَةٌ بِدَيْنِهِ حَتَّى يُقْضَى عَنْهُ", d: "Jiwa seorang mukmin itu tergantung oleh hutangnya sampai hutang itu dilunasi. (HR. Tirmidzi)", t: "penyelesaian kewajiban finansial", p: "Menunda pembayaran hutang bagi orang yang mampu adalah suatu kezaliman", u: "Hutang yang tertunda mengurangi kesempurnaan kebahagiaan Idul Fitri." },
+            { id: 23, k: "Muamalah", j: "Pentingnya Menjaga Hak-Hak Tetangga", arab: "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُحْسِنْ إِلَى جَارِهِ", d: "Barangsiapa beriman kepada Allah dan hari akhir, hendaklah ia berbuat baik kepada tetangganya. (HR. Muslim)", t: "keharmonisan hidup bertetangga", p: "Membagi hidangan berbuka kepada tetangga merupakan wujud iman", u: "Tidak beriman orang yang kenyang sementara tetangganya kelaparan." },
+            { id: 24, k: "Muamalah", j: "Gaya Hidup Sederhana dan Tidak Konsumtif", arab: "وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ", d: "Makan dan minumlah, dan janganlah berlebih-lebihan. Sesungguhnya Allah tidak menyukai orang-orang yang berlebih-lebihan. (QS. Al-A'raf: 31)", t: "penghindaran sikap tabdzir dan israf", p: "Makan dan minum berlebihan saat berbuka merusak esensi puasa", u: "Kesederhanaan adalah bagian dari cabang keimanan." },
+            { id: 25, k: "Muamalah", j: "Manajemen Waktu Antara Kerja dan Ibadah", arab: "فَإِذَا قُضِيَتِ الصَّلَاةُ فَانتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِن فَضْلِ اللَّهِ", d: "Apabila telah ditunaikan shalat, maka bertebaranlah kamu di muka bumi; dan carilah karunia Allah. (QS. Al-Jumu'ah: 10)", t: "keseimbangan dunia dan akhirat", p: "Bekerja mencari rezeki halal bernilai ibadah jika disertai niat yang benar", u: "Membagi waktu secara bijak agar ibadah dan kerja berjalan seimbang." },
+            { id: 26, k: "Muamalah", j: "Menjaga Amanah dan Profesionalisme Kerja", arab: "إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا", d: "Sesungguhnya Allah menyuruh kamu menyampaikan amanat kepada yang berhak menerimanya. (QS. An-Nisa: 58)", t: "integritas profesi saat berpuasa", p: "Puasa tidak boleh dijadikan alasan untuk bermalas-malasan dalam pekerjaan", u: "Sesungguhnya Allah menyukai jika seseorang bekerja, ia melakukannya secara profesional." },
+
+            // AKHLAK (27-34)
+            { id: 27, k: "Akhlak", j: "Menahan Lisan Dari Ghibah, Fitnah, dan Dusta", arab: "مَنْ لَمْ يَدَعْ قَوْلَ الزُّورِ وَالْعَمَلَ بِهِ فَلَيْسَ لِلَّهِ حَاجَةٌ فِي أَنْ يَدَعَ طَعَامَهُ وَشَرَابَهُ", d: "Barangsiapa yang tidak meninggalkan perkataan dusta dan perbuatannya, maka Allah tidak butuh dari rasa lapar dan haus yang ia tahan. (HR. Bukhari)", t: "penjagaan ucapan dan komunikasi", p: "Ghibah dan dusta menggugurkan nilai pahala puasa di sisi Allah", u: "Lisan adalah anggota tubuh yang paling sering merusak pahala puasa." },
+            { id: 28, k: "Akhlak", j: "Sifat Pemaaf dan Menyambung Tali Silaturahmi", arab: "وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ", d: "Dan orang-orang yang menahan amarahnya dan memaafkan (kesalahan) orang. Allah menyukai orang-orang yang berbuat kebajikan. (QS. Ali Imran: 134)", t: "pembersihan rasa dendam dan amarah", p: "Memaafkan kesalahan orang lain melapangkan dada dan mengangkat derajat", u: "Tidaklah Allah menambah bagi hamba yang pemaaf melainkan kemuliaan." },
+            { id: 29, k: "Akhlak", j: "Mengendalikan Emosi dan Amarah Saat Berpuasa", arab: "وَإِذَا سَابَّهُ أَحَدٌ أَوْ قَاتَلَهُ فَلْيَقُلْ إِنِّي صَائِمٌ إِنِّي صَائِمٌ", d: "Apabila ada seseorang yang mencacinya atau mengajak bermusuhan, hendaklah ia berkata: 'Aku sedang berpuasa, aku sedang berpuasa'. (HR. Bukhari)", t: "penguasaan emosi emosional", p: "Menebar kedamaian dan tidak melayani provokasi amarah saat puasa", u: "Orang kuat bukanlah yang menang gulat, tapi yang mampu menahan amarahnya." },
+            { id: 30, k: "Akhlak", j: "Menjauhi Sifat Riya dan Sombong Dalam Beribadah", arab: "فَوَيْلٌ لِّلْمُصَلِّينَ الَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ الَّذِينَ هُمْ يُرَاءُونَ", d: "Maka kecelakaanlah bagi orang-orang yang shalat, (yaitu) orang-orang yang lalai dari shalatnya, yang berbuat riya. (QS. Al-Ma'un: 4-6)", t: "kerendahan hati dalam beramal", p: "Kesombongan merusak amalan dan menutup pintu surga bagi pelakunya", u: "Tidak akan masuk surga orang yang di dalam hatinya ada kesombongan sebesar biji zarrah." },
+            { id: 31, k: "Akhlak", j: "Meningkatkan Empati Kepada Kaum Dhuafa", arab: "ارْحَمُوا مَنْ فِي الأَرْضِ يَرْحَمْكُمْ مَنْ فِي السَّمَاءِ", d: "Sayangilah siapapun yang ada di bumi, niscaya Yang ada di langit akan menyayangimu. (HR. Tirmidzi)", t: "kepedulian kemanusiaan", p: "Lapar dan dahaga mendidik kita agar peka terhadap penderitaan sesama", u: "Rasa lapar mendidik kita merasakan penderitaan fakir miskin." },
+            { id: 32, k: "Akhlak", j: "Adab Menggunakan Media Sosial Saat Berpuasa", arab: "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن جَآءَكُمْ فَاسِقٌۢ بِنَبَإٍ فَتَبَيَّنُوٓا۟", d: "Wahai orang-orang yang beriman, jika datang kepadamu orang fasik membawa suatu berita, maka periksalah dengan teliti. (QS. Al-Hujurat: 6)", t: "saring sebelum sharing informasi", p: "Mencerna berita hoax dan ujaran kebencian di medsos merusak pahala puasa", u: "Cukuplah seseorang dikatakan berdusta jika ia menceritakan semua yang didengarnya." },
+            { id: 33, k: "Akhlak", j: "Birrul Walidain: Berbakti Kepada Orang Tua", arab: "وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ وَبِالْوَالِدَيْنِ إِحْسَانًا", d: "Dan Tuhanmu telah memerintahkan supaya kamu jangan menyembah selain Dia dan hendaklah kamu berbuat baik pada ibu bapakmu dengan sebaik-baiknya. (QS. Al-Isra: 23)", t: "penghormatan kepada kedua orang tua", p: "Berbakti kepada orang tua adalah amal paling dicintai setelah shalat tepat waktu", u: "Rida Allah tergantung pada rida kedua orang tua." },
+            { id: 34, k: "Akhlak", j: "Menjaga Pandangan Dari Hal yang Haram", arab: "قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ وَيَحْفَظُوا فُرُوجَهُمْ", d: "Katakanlah kepada orang laki-laki yang beriman: 'Hendaklah mereka menahan pandanganya, dan memelihara kemaluannya'. (QS. An-Nur: 30)", t: "penjagaan pandangan mata", p: "Menundukkan pandangan menjaga kesucian hati dari syahwat negatif", u: "Pandangan mata adalah panah beracun iblis; barangsiapa meninggalkannya diberi kelezatan iman." },
+
+            // JINAYAT (35-42)
+            { id: 35, k: "Jinayat", j: "Dosa Besar Menumpahkan Darah dan Kejahatan Fisik", arab: "مَن قَتَلَ نَفْسًۢا بِغَيْرِ نَفْسٍ أَوْ فَسَادٍ فِي ٱلْأَرْضِ فَكَأَنَّمَا قَتَلَ ٱلنَّاسَ جَمِيعًا", d: "Barangsiapa membunuh seorang manusia bukan karena orang itu membunuh orang lain atau bukan karena membuat kerusakan di muka bumi, maka seakan-akan dia telah membunuh manusia seluruhnya. (QS. Al-Ma'idah: 32)", t: "perlindungan atas jiwa (Hifdzun Nafs)", p: "Islam membendung segala kejahatan fisik dan pembunuhan secara tegas", u: "Membunuh satu jiwa tanpa alasan sah seperti membunuh seluruh manusia." },
+            { id: 36, k: "Jinayat", j: "Dampak Buruk Pencurian dan Korupsi Bagi Masyarakat", arab: "وَٱلسَّارِقُ وَٱلسَّارِقَةُ ٱفْطَعُوٓا۟ أَيْدِيَهُمَا جَزَآءًۢ بِمَا كَسَبَا نَكَٰلًا مِّنَ ٱللَّهِ", d: "Laki-laki yang mencuri dan perempuan yang mencuri, potonglah tangan keduanya (sebagai) pembalasan bagi apa yang mereka kerjakan. (QS. Al-Ma'idah: 38)", t: "perlindungan harta dari kejahatan", p: "Mengambil harta masyarakat secara ilegal merusak keadilan dan tatanan hukum", u: "Dilaknat orang yang mencuri dan merampas hak milik orang lain." },
+            { id: 37, k: "Jinayat", j: "Bahaya Minuman Keras dan Narkoba", arab: "إِنَّمَا الْخَمْرُ وَالْمَيْسِرُ وَالأَنصَابُ وَالأَزْلاَمُ رِجْسٌ مِّنْ عَمَلِ الشَّيْطَانِ فَاجْتَنِبُوهُ", d: "Sesungguhnya (minuman) khamr, berjudi, (berkorban untuk) berhala, mengundi nasib dengan panah, adalah termasuk perbuatan syaitan. Maka jauhilah. (QS. Al-Ma'idah: 90)", t: "penjagaan akal pikiran (Hifdzul Aql)", p: "Miras dan narkoba merusak kesehatan fisik, akal, serta merusak ibadah", u: "Khamr adalah induk dari segala kejahatan." },
+            { id: 38, k: "Jinayat", j: "Pencegahan Perzinaaannya dan Perbuatan Keji", arab: "وَلَا تَقْرَبُوا الزِّنَىٰ ۖ إِنَّهُ كَانَ فَاحِشَةً وَسَاءَ سَبِيلًا", d: "Dan janganlah kamu mendekati zina; sesungguhnya zina itu adalah suatu perbuatan yang keji. Dan suatu jalan yang buruk. (QS. Al-Isra: 32)", t: "penjagaan kehormatan dan keturunan", p: "Perzinaaan merusak nasab dan membawa penyakit sosial yang berbahaya", u: "Puasa sebagai benteng utama penunduk hawa nafsu syahwat." },
+            { id: 39, k: "Jinayat", j: "Ancaman Tuduhan Palsu (Qadzaf) dan Pencemaran Nama Baik", arab: "وَالَّذِينَ يَرْمُونَ الْمُحْصَنَاتِ ثُمَّ لَمْ يَأْتُوا بِأَرْبَعَةِ شُهَدَاءَ فَاجْلِدُوهُمْ ثَمَانِينَ جَلْدَةً", d: "Dan orang-orang yang menuduh wanita-wanita yang baik-baik (berbuat zina) dan mereka tidak mendatangkan empat orang saksi, maka deralah mereka (yang menuduh itu) delapan puluh kali dera. (QS. An-Nur: 4)", t: "sanksi hukum atas tuduhan keji", p: "Menuduh orang baik berzina tanpa 4 saksi membawa hukuman dan dosa besar", u: "Jauhilah dosa besar yang membinasakan, di antaranya menuduh wanita baik-baik." },
+            { id: 40, k: "Jinayat", j: "Keadilan Dalam Penegakan Hukum Syariat", arab: "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ كُونُوا۟ قَوَّٰمِينَ بِٱلْقِسْطِ شُهَدَآءَ لِلَّهِ وَلَوْ عَلَىٰٓ أَنفُسِكُمْ", d: "Wahai orang-orang yang beriman, jadilah kamu orang yang benar-benar penegak keadilan, menjadi saksi karena Allah biarpun terhadap dirimu sendiri. (QS. An-Nisa: 135)", t: "kesetaraan di depan hukum", p: "Hukum tidak boleh tumpul ke atas dan tajam ke bawah dalam pandangan Islam", u: "Seandainya Fatimah binti Muhammad mencuri, niscaya aku sendiri yang memotong tangannya." },
+            { id: 41, k: "Jinayat", j: "Pentingnya Taubat Nasuha Bagi Pelaku Kriminal", arab: "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ تُوبُوٓا۟ إِلَى ٱللَّهِ تَوْبَةً نَّصُوحًا", d: "Hai orang-orang yang beriman, bertaubatlah kepada Allah dengan taubatan nasuhaa (taubat yang semurni-murninya). (QS. At-Tahrim: 8)", t: "pemulihan diri pelaku kejahatan", p: "Pintu taubat terbuka lebar di bulan Ramadhan bagi siapapun yang ingin bertobat", u: "Orang yang bertobat dari dosa seperti orang yang tidak memiliki dosa." },
+            { id: 42, k: "Jinayat", j: "Perlindungan Hak Asasi Manusia Dalam Fiqih Jinayah", arab: "وَلَا تَقْتُلُوا النَّفْسَ الَّتِي حَرَّمَ اللَّهُ إِلَّا بِالْحَقِّ", d: "Dan janganlah kamu membunuh jiwa yang diharamkan Allah (membunuhnya), melainkan dengan suatu (alasan) yang benar. (QS. Al-Isra: 33)", t: "kepastian hukum dan jaminan keadilan", p: "Syariat melarang larangan main hakim sendiri dalam menangani kejahatan", u: "Darah dan harta seorang muslim adalah haram bagi muslim lainnya." },
+
+            // SIYASAH (43-50)
+            { id: 43, k: "Siyasah", j: "Kepemimpinan yang Adil Berdasarkan Kepemimpinan Islam", arab: "كُلُّكُمْ رَاعٍ وَكُلُّكُمْ مَسْئُولٌ عَنْ رَعِيَّتِهِ", d: "Setiap kalian adalah pemimpin dan setiap kalian akan dimintai pertanggungjawaban atas kepemimpinannya. (HR. Bukhari)", t: "tanggung jawab politik kepemimpinan", p: "Pemimpin adil akan mendapat naungan khusus dari Allah di hari kiamat", u: "Pemimpin adil adalah golongan pertama yang mendapat naungan Allah." },
+            { id: 44, k: "Siyasah", j: "Prinsip Musyawarah Dalam Pengambilan Keputusan", arab: "وَشَاوِرْهُمْ فِي الْأَمْرِ ۖ فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ", d: "Dan bermusyawaratlah dengan mereka dalam urusan itu. Kemudian apabila kamu telah membulatkan tekad, maka bertawakallah kepada Allah. (QS. Ali Imran: 159)", t: "demokrasi dan kebersamaan keputusan", p: "Musyawarah mencegah timbulnya kediktatoran dalam pengelolaan negara", u: "Musyawarah menghasilkan keputusan yang membawa maslahat." },
+            { id: 45, k: "Siyasah", j: "Menjaga Persatuan Umat (Ukhuwah Islamiyah)", arab: "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا", d: "Dan berpeganglah kamu semuanya kepada tali (agama) Allah, dan janganlah kamu bercerai berai. (QS. Ali Imran: 103)", t: "integrasi sosial bangsa dan umat", p: "Menjauhi konflik sektarian dan menguatkan ikatan persaudaraan", u: "Orang mukmin dengan mukmin lainnya seperti bangunan yang saling menguatkan." },
+            { id: 46, k: "Siyasah", j: "Tanggung Jawab Amar Ma'ruf Nahi Munkar", arab: "كُنتُمْ خَيْرَ أُمَّةٍ أُخْرِجَتْ لِلنَّاسِ تَأْمُرُونَ بِالْمَعْرُوفِ وَتَنْهَوْنَ عَنِ الْمُنكَرِ", d: "Kamu adalah umat yang terbaik yang dilahirkan untuk manusia, menyuruh kepada yang ma'ruf, dan mencegah dari yang munkar. (QS. Ali Imran: 110)", t: "kontrol sosial berkehidupan", p: "Mencegah kemungkaran dengan tangan, lisan, atau minimal dibenci dalam hati", u: "Barangsiapa melihat kemungkaran, hendaklah ia mengubahnya dengan tangannya." },
+            { id: 47, k: "Siyasah", j: "Ketaatan Kepada Pemerintah Dalam Kebaikan", arab: "أَطِيعُوا اللَّهَ وَأَطِيعُوا الرَّسُولَ وَأُولِي الْأَمْرِ مِنكُمْ", d: "Taatilah Allah dan taatilah Rasul (Nya), dan ulil amri di antara kamu. (QS. An-Nisa: 59)", t: "stabilitas berbangsa dan bernegara", p: "Mentaati hukum dan peraturan pemerintah selama tidak menyuruh maksiat", u: "Mendengar dan taat adalah kewajiban muslim selama tidak diperintah maksiat." },
+            { id: 48, k: "Siyasah", j: "Keadilan Sosial dan Distribusi Kesejahteraan", arab: "كَيْ لَا يَكُونَ دُولَةً بَيْنَ الْأَغْنِيَاءِ مِنكُمْ", d: "Supaya harta itu jangan beredar di antara orang-orang kaya saja di antara kamu. (QS. Al-Hasyr: 7)", t: "pemerataan ekonomi rakyat", p: "Kebijakan publik harus berpihak pada kesejahteraan rakyat miskin", u: "Harta tidak boleh hanya berputar di antara orang-orang kaya saja." },
+            { id: 49, k: "Siyasah", j: "Etika Berpolitik dan Menghindari Politik Uang", arab: "لَعَنَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ الرَّاشِيَ وَالْمُرْتَشِيَ", d: "Rasulullah SAW melaknat orang yang menyuap dan orang yang menerima suap. (HR. Ahmad)", t: "integritas proses politik", p: "Suap-menyuap dalam politik merusak keadilan dan menghadirkan murka Allah", u: "Politik uang merusak tatanan demokrasi dan syariat." },
+            { id: 50, k: "Siyasah", j: "Mewujudkan Negeri Subur dan Pengampun (Baldatun Tayyibatun)", arab: "بَلْدَةٌ طَيِّبَةٌ وَرَبٌّ غَفُورٌ", d: "(Negerimu) adalah negeri yang baik dan (Tuhanmu) adalah Tuhan Yang Maha Pengampun. (QS. Saba: 15)", t: "pembangunan peradaban berkah", p: "Sinergi iman dan pembangunan menciptakan negara sejahtera di bawah rida Allah", u: "Negeri yang baik adalah yang penduduknya beriman dan bertakwa." },
+
+            // NUZULUL QUR'AN (51-55)
+            { id: 51, k: "Nuzulul Quran", j: "Nuzulul Qur'an: Pengingat Awal Turunnya Cahaya Petunjuk Hidup", arab: "شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ وَبَيِّنَاتٍ مِّنَ الْهُدَىٰ وَالْفُرْقَانِ", d: "Bulan Ramadhan adalah (bulan) yang di dalamnya diturunkan Al-Qur'an, sebagai petunjuk bagi manusia dan penjelasan-penjelasan mengenai petunjuk itu dan pembeda. (QS. Al-Baqarah: 185)", t: "menjadikan Al-Qur'an sebagai pedoman utama hidup", p: "Nuzulul Qur'an memperingati awal mula wahyu yang mengubah peradaban manusia dari kegelapan menuju cahaya", u: "Al-Qur'an adalah hidangan Allah di bumi, maka ambillah petunjuk dari-Nya sebanyak mungkin." },
+            { id: 52, k: "Nuzulul Quran", j: "Membumikan Nilai-Nilai Al-Qur'an Dalam Kehidupan Modern", arab: "إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ", d: "Sesungguhnya Al-Qur'an ini memberikan petunjuk kepada (jalan) yang lebih lurus. (QS. Al-Isra: 9)", t: "penerapan etika Qur'ani di era modern", p: "Mengamalkan syariat Al-Qur'an dalam setiap keputusan ekonomi, sosial, dan teknologi", u: "Sebaik-baik petunjuk dalam menghadapi fitnah zaman adalah berpegang teguh pada Al-Qur'an." },
+            { id: 53, k: "Nuzulul Quran", j: "Mengagungkan Al-Qur'an Melalui Tadabbur dan Amalan", arab: "كِتَابٌ أَنزَلْنَاهُ إِلَيْكَ مُبَارَكٌ لِّيَدَّبَّرُوا آيَاتِهِ وَلِيَتَذَكَّرَ أُولُو الْأَلْبَابِ", d: "Ini adalah sebuah kitab yang Kami turunkan kepadamu penuh dengan berkah supaya mereka memperhatikan ayat-ayatnya dan supaya mendapat pelajaran orang-orang yang mempunyai pikiran. (QS. Sad: 29)", t: "peningkatan kualitatif dari tilawah ke tadabbur", p: "Membaca Al-Qur'an harus diiringi dengan usaha memahami dan mengamalkan isinya", u: "Janganlah targetmu hanya menyelesaikan akhir surat, tetapi targetkanlah kapan hatimu tergerak oleh ayat-Nya." },
+            { id: 54, k: "Nuzulul Quran", j: "Al-Qur'an Sebagai Obat Jiwa dan Penawar Keraguan", arab: "وَنُنَّزِلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ", d: "Dan Kami turunkan dari Al-Qur'an suatu yang menjadi penawar (obat) dan rahmat bagi orang-orang yang beriman. (QS. Al-Isra: 82)", t: "penyembuhan penyakit rohani dan mental", p: "Al-Qur'an adalah penawar terbaik untuk penyakit krisis moral, kecemasan, dan kegelisahan hati", u: "Tidak ada obat yang lebih ampuh untuk menenangkan hati yang gelisah selain meresapi bacaan Al-Qur'an." },
+            { id: 55, k: "Nuzulul Quran", j: "Keutamaan Menjadi Ahli Qur'an dan Mengajarkannya", arab: "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ", d: "Sebaik-baik kalian adalah orang yang mempelajari Al-Qur'an dan mengajarkannya. (HR. Bukhari)", t: "memasyarakatkan Al-Qur'an di lingkungan keluarga", p: "Mendorong pendidikan Al-Qur'an bagi anak-anak dan generasi muda sebagai investasi akhirat", u: "Rumah yang dibacakan Al-Qur'an di dalamnya akan terasa lapang bagi penghuninya dan dihadiri malaikat." },
+
+            // IDUL FITRI (56-60)
+            { id: 56, k: "Idul Fitri", j: "Meraih Kemenangan Sejati di Hari Fitri", arab: "قَدْ أَفْلَحَ مَن تَزَكَّىٰ ﴿١٤﴾ وَذَكَرَ اسْمَ رَبِّهِ فَصَلَّىٰ ﴿١٥﴾", d: "Sesungguhnya beruntunglah orang yang membersihkan diri (dengan beriman), dan dia ingat nama Tuhannya, lalu dia shalat. (QS. Al-A'la: 14-15)", t: "kembali kepada kesucian jiwa yang hakiki", p: "Hakikat Idul Fitri bukanlah baju baru, melainkan bertambahnya ketaatan dan kebersihan jiwa dari dosa", u: "Hari raya bukanlah bagi orang yang pakaiannya baru, melainkan bagi orang yang ketaatannya bertambah." },
+            { id: 57, k: "Idul Fitri", j: "Menyempurnakan Kemenangan dengan Zakat Fitrah", arab: "فَرَضَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ زَكَاةَ الْفِطْرِ طُهْرَةً لِلصَّائِمِ مِنَ اللَّغْوِ وَالرَّفَثِ وَطُعْمَةً لِلْمَسَاكِينِ", d: "Rasulullah SAW mewajibkan zakat fitrah sebagai pembersih bagi orang yang berpuasa dari perbuatan sia-sia dan kata-kata kotor, serta sebagai makanan bagi orang-orang miskin. (HR. Abu Dawud)", t: "harmoni antara kesucian ibadah dan empati sosial", p: "Zakat fitrah menutup kekurangan puasa kita sekaligus menghadirkan kebahagiaan bagi fakir miskin di hari raya", u: "Puasa Ramadhan digantungkan antara langit dan bumi sampai dibayarkan zakat fitrahnya." },
+            { id: 58, k: "Idul Fitri", j: "Mengagungkan Asma Allah Melalui Takbir di Malam Idul Fitri", arab: "وَلِتُكْمِلُوا الْعِدَّةَ وَلِتُكَبِّرُوا اللَّهَ عَلَىٰ مَا هَدَاكُمْ وَلَعَلَّكُمْ تَشْكُرُونَ", d: "Dan hendaklah kamu menyempurnakan bilangannya dan hendaklah kamu mengagungkan Allah atas petunjuk-Nya yang diberikan kepadamu, supaya kamu bersyukur. (QS. Al-Baqarah: 185)", t: "peningkatan rasa syukur atas nikmat Ramadhan", p: "Mengisi malam kemenangan dengan syiar takbir, tahmid, dan tasyakur kepada Allah SWT", u: "Hiasilah hari raya kalian dengan mengagungkan kalimat takbir dan tahmid." },
+            { id: 59, k: "Idul Fitri", j: "Menyambung Silaturahmi dan Menghapus Dendam di Hari Raya", arab: "فَهَلْ عَسَيْتُمْ إِن تَوَلَّيْتُمْ أَن تُفْسِدُوا فِي الْأَرْضِ وَتُقَطِّعُوا أَرْحَامَكُمْ", d: "Maka apakah sekiranya kamu berkuasa, kamu akan berbuat kerusakan di bumi dan memutus hubungan kekeluargaan? (QS. Muhammad: 22)", t: "halalbihalal dan meleburkan salah antar sesama", p: "Memanfaatkan suasana Idul Fitri untuk saling memaafkan, membuka pintu silaturahmi, dan merajut persaudaraan", u: "Tidak ada dosa yang lebih pantas disegerakan balasannya di dunia selain berbuat zalim dan memutuskan silaturahmi." },
+            { id: 60, k: "Idul Fitri", j: "Istiqamah Beribadah Pasca Ramadhan: Tanda Amalan Diterima", arab: "فَاسْتَقِمْ كَمَا أُمِرْتَ وَمَن تَابَ مَعَكَ وَلَا تَطْغَوْا", d: "Maka tetaplah engkau (di jalan yang benar), sebagaimana diperintahkan kepadamu dan (juga) orang yang telah bertobat bersamamu, dan janganlah kamu melampaui batas. (QS. Hud: 112)", t: "konsistensi ibadah sepanjang hayat", p: "Tanda diterimanya amalan Ramadhan adalah berlanjutnya kebiasaan beribadah di bulan-bulan berikutnya", u: "Jadilah hamba Allah yang Rabbani (beribadah sepanjang waktu), jangan jadi hamba Ramadhani (beribadah hanya di bulan Ramadhan)." }
+        ];
+
+        let currentKultum = null;
+        let currentTab = 1;
+
+        const kultumListEl = document.getElementById('kultumList');
+        const categoryFilterEl = document.getElementById('categoryFilter');
+        const mainContentEl = document.getElementById('mainContent');
+
+        function renderList(data) {
+            kultumListEl.innerHTML = '';
+            if (!Array.isArray(data) || data.length === 0) {
+                kultumListEl.innerHTML = '<li style="cursor:default">Tidak ada judul ditemukan</li>';
+                return;
+            }
+
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.id}. ${item.j}`;
+                li.onclick = () => selectKultum(item.id);
+                if (currentKultum && currentKultum.id === item.id) {
+                    li.classList.add('active');
+                }
+                kultumListEl.appendChild(li);
+            });
+        }
+
+        categoryFilterEl.addEventListener('change', (e) => {
+            const cat = e.target.value;
+            if (cat === 'ALL') {
+                renderList(kultumData);
+            } else {
+                const filtered = kultumData.filter(x => x.k === cat);
+                renderList(filtered);
+            }
+        });
+
+        function selectKultum(id) {
+            try {
+                const item = kultumData.find(x => x.id === id);
+                if (!item) return;
+
+                currentKultum = item;
+                currentTab = 1;
+
+                const currentFilter = categoryFilterEl.value;
+                const activeData = currentFilter === 'ALL' ? kultumData : kultumData.filter(x => x.k === currentFilter);
+                renderList(activeData);
+
+                renderContent();
+            } catch (err) {
+                console.error("Error selecting kultum:", err);
+            }
+        }
+
+        function renderContent() {
+            if (!currentKultum) return;
+
+            const fullText = buildFullScript(currentKultum, currentTab);
+
+            mainContentEl.innerHTML = `
+                <span class="badge">Kategori: ${escapeHtml(currentKultum.k)}</span>
+                <h2 class="content-title">${currentKultum.id}. ${escapeHtml(currentKultum.j)}</h2>
+
+                <div class="dalil-box">
+                    <strong>Teks Arab Dalil Utama:</strong>
+                    <div class="arabic-block">${currentKultum.arab}</div>
+                    <strong>Terjemahan Dalil:</strong><br>
+                    "${escapeHtml(currentKultum.d)}"
+                </div>
+
+                <div class="tab-buttons">
+                    <button class="tab-btn ${currentTab === 1 ? 'active' : ''}" onclick="switchTab(1)">Redaksi A (Sistematis & Khidmat)</button>
+                    <button class="tab-btn ${currentTab === 2 ? 'active' : ''}" onclick="switchTab(2)">Redaksi B (Populer & Komunikatif)</button>
+                </div>
+
+                <div class="redaksi-box">${escapeHtml(fullText)}</div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-gold" onclick="cetakKultum()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm15 5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12zM5 11h6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/></svg>
+                        Cetak / Simpan Ke PDF
+                    </button>
+                </div>
+            `;
+        }
+
+        function switchTab(tabIndex) {
+            currentTab = tabIndex;
+            renderContent();
+        }
+
+        function cetakKultum() {
+            window.print();
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderList(kultumData);
+        });
+    </script>
+</body>
+</html>
 
