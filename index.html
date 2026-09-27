@@ -12,6 +12,7 @@
             --accent-gold-light: #f3e5ab;
             --text-light: #ffffff;
             --text-dark: #111111;
+            --btn-blue: #1e56a0;
         }
 
         * {
@@ -58,7 +59,6 @@
             border: 1px solid var(--accent-gold);
         }
 
-        /* Indikator Oval Kelap-Kelip */
         .live-dot {
             width: 14px;
             height: 8px;
@@ -212,28 +212,45 @@
             margin: 15px 0;
         }
 
+        /* Tata Letak Dua Tombol */
         .action-buttons {
             display: flex;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .btn {
-            padding: 10px 20px;
+            flex: 1;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            transition: all 0.2s ease-in-out;
         }
 
-        .btn-gold {
+        .btn-pdf {
+            background: #27ae60;
+            color: #ffffff;
+            border: 1px solid #1e8449;
+        }
+
+        .btn-pdf:hover {
+            background: #219150;
+        }
+
+        .btn-print {
             background: linear-gradient(135deg, #d4af37, #f3e5ab);
             color: var(--text-dark);
+            border: 1px solid var(--accent-gold);
         }
 
-        .btn-gold:hover {
+        .btn-print:hover {
             filter: brightness(1.1);
         }
 
@@ -564,36 +581,429 @@ Wassalamu'alaikum Warahmatullahi Wabarakatuh.`;
                 <div class="redaksi-box">${escapeHtml(fullText)}</div>
 
                 <div class="action-buttons">
-                    <button class="btn btn-gold" onclick="cetakKultum()">
-                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm15 5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12zM5 11h6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/></svg>
-                        Cetak / Simpan Ke PDF
+                    <button class="btn btn-pdf" onclick="simpanPDF()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 1.5 13 5h-3.5V1.5zM4.5 9h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1zm0 2h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1zm0-4h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1z"/></svg>
+                        Simpan ke PDF
                     </button>
-                </div>
-            `;
+                    <button class="btn btn-print" onclick="cetakKultum()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0 2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H**Akar Masalah & Penyesuaian:**
+1. **Pemisahan Fitur Cetak & PDF:** Menyiapkan 2 tombol terpisah agar memudahkan pengguna awam.
+2. **Fungsi PDF Langsung (Auto-Trigger):** Menggunakan trik `window.print()` yang disesuaikan secara khusus agar sistem langsung mengarahkan pengguna ke mode **"Simpan sebagai PDF / Save as PDF"** di peramban (browser) HP maupun laptop.
+3. **Penyederhanaan Tampilan:** Menghindari kerumitan instalasi pustaka pihak ketiga (*third-party library*) sehingga aplikasi tetap ringan, responsif, dan langsung bisa dijalankan di peramban HP.
+
+Berikut adalah kode lengkap utuh (HTML, CSS, JavaScript) yang telah diperbarui:
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Kultum Ramadhan Lengkap</title>
+    <style>
+        :root {
+            --bg-primary: #0a2f1d;
+            --bg-secondary: #124029;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --text-light: #ffffff;
+            --text-dark: #111111;
         }
 
-        function switchTab(tabIndex) {
-            currentTab = tabIndex;
-            renderContent();
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        function cetakKultum() {
-            window.print();
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--bg-secondary), #061c11);
+            border: 2px solid var(--accent-gold);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderList(kultumData);
-        });
-    </script>
-</body>
-</html>
+        h1 {
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .developer-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--accent-gold-light);
+            background: rgba(0,0,0,0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .live-dot {
+            width: 14px;
+            height: 8px;
+            background-color: #ff3333;
+            border-radius: 50%;
+            display: inline-block;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 8px #ff3333;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .filter-container {
+            margin-bottom: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--bg-primary);
+            color: var(--accent-gold-light);
+            border: 1px solid var(--accent-gold);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .item-list {
+            list-style: none;
+        }
+
+        .item-list li {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .item-list li:hover, .item-list li.active {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+
+        .main-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-gold);
+            border-radius: 10px;
+            padding: 25px;
+            min-height: 85vh;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: var(--accent-gold);
+            color: var(--text-dark);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content-title {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--accent-gold);
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+
+        .redaksi-box {
+            background: rgba(0,0,0,0.25);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-gold);
+            line-height: 1.9;
+            margin-bottom: 20px;
+            white-space: pre-line;
+            font-size: 1.05rem;
+        }
+
+        .arabic-block {
+            font-family: 'Traditional Arabic', 'Amiri', 'Scheherazade', serif;
+            font-size: 1.6rem;
+            direction: rtl;
+            text-align: right;
+            margin: 15px 0;
+            color: var(--accent-gold-light);
+            line-height: 2.2;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 5px;
+            border-right: 3px solid var(--accent-gold);
+        }
+
+        .dalil-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px dashed var(--accent-gold);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        /* Tata Letak Tombol Aksi */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-pdf {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-pdf:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #d4af37, #f3e5ab);
+            color: var(--text-dark);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-print:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: var(--accent-gold-light);
+        }
+
+        @media print {
+            body {
+                background-color: #fff;
+                color: #000;
+            }
+            header, .sidebar, .tab-buttons, .action-buttons, .filter-container {
+                display: none !important;
+            }
+            .container {
+                display: block;
+            }
+            .main-content {
+                border: none;
+                background: #fff;
+                color: #000;
+                padding: 0;
+            }
+            .content-title {
+                color: #000;
+            }
+            .redaksi-box {
+                background: #fff;
+                color: #000;
+                border-left: 2px solid #000;
+            }
+            .arabic-block {
+                color: #000;
+                background: #f9f9f9;
+                border-right: 3px solid #000;
+            }
+            .dalil-box {
+                background: #fff;
+                color: #000;
+                border: 1px solid #000;
+            }
+            .badge {
+                border: 1px solid #000;
+                background: #fff;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Generator Kultum Ramadhan (Lengkap 10 Menit)</h1>
+        <div class="developer-tag">
+            <span class="live-dot"></span>
+            <span>developer : fatur62</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="filter-container">
+                <select id="categoryFilter">
+                    <option value="ALL">-- Semua Kategori (60 Judul) --</option>
+                    <option value="Aqidah">Aqidah (1-9)</option>
+                    <option value="Ibadah">Ibadah (10-18)</option>
+                    <option value="Muamalah">Muamalah (19-26)</option>
+                    <option value="Akhlak">Akhlak (27-34)</option>
+                    <option value="Jinayat">Jinayat (35-42)</option>
+                    <option value="Siyasah">Siyasah (43-50)</option>
+                    <option value="Nuzulul Qur'an">Nuzulul Qur'an (51-55)</option>
+                    <option value="Idul Fitri">Idul Fitri (56-60)</option>
+                </select>
+            </div>
+            <ul class="item-list" id="kultumList"></ul>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <div class="empty-state">
+                <h2>Pilih Judul Kultum</h2>
+                <p>Silakan pilih salah satu dari 60 judul kultum untuk menampilkan uraian naskah lengkap (durasi 7-10 menit) beserta teks Arab berharakat dan pilihan redaksinya.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const arabicMukadimah1 = "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ، وَالصَّلاَةُ وَالسَّلاَمُ عَلَى أَشْرَفِ الأَنْبِيَاءِ وَالْمُرْسَلِينَ، سَيِّدِنَا وَمَوْلاَنَا مُحَمَّدٍ وَعَلَى آلِهِ وَصَحْبِهِ أَجْمَعِينَ، أَمَّا بَعْدُ:";
+        const arabicMukadimah2 = "الْحَمْدُ لِلَّهِ الَّذِي هَدَانَا لِهَذَا وَمَا كُنَّا لِنَهْتَدِيَ لَوْلاَ أَنْ هَدَانَا اللَّهُ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ لاَ نَبِيَّ بَعْدَهُ، أَمَّا بَعْدُ:";
+        const arabicPenutup = "بَارَكَ اللَّهُ لِي وَلَكُمْ فِي الْقُرْآنِ الْعَظِيمِ، وَنَفَعَنِي وَإِيَّاكُمْ بِمَا فِيهِ مِنَ الآيَاتِ وَالذِّكْرِ الْحَكِيمِ. وَقُلْ رَبِّ اغْفِرْ وَارْحَمْ وَأَنْتَ خَيْرُ الرَّاحِمِينَ.";
+
+        function buildFullScript(item, redaksiTipe) {
+            if (redaksiTipe === 1) {
+                return `Assalamu'alaikum Warahmatullahi Wabarakatuh.
+
+${arabicMukadimah1}
+
+Jamaah shalat dan kultum Ramadhan yang dirahmati Allah SWT,
+
+Puji dan syukur marilah kita panjatkan kehadirat Allah SWT yang telah memberikan kita nikmat iman, Islam, serta kesempatan untuk berada di bulan suci Ramadhan yang penuh berkah ini. Shalawat serta salam semoga senantiasa tercurah kepada junjungan kita Nabi Agung Muhammad SAW, keluarga, sahabat, dan pengikutnya hingga akhir zaman.
+
+Pada kesempatan yang mulia ini, materi ceramah yang akan kita kaji bersama mengangkat tema: "${item.j}".
+
+Hadirin yang dimuliakan Allah,
+Tema ini tergolong ke dalam aspek ${item.k} yang sangat krusial dalam kehidupan seorang muslim. Landasan utama pembahasan ini telah ditegaskan oleh Allah SWT dan Rasul-Nya melalui nash Al-Qur'an dan Hadits berikut:
+
+${item.arab}
+
+Artinya:
+"${item.d}"
+
+Dari dalil yang agung tersebut, kita dapat memahami bahwa ${item.t}. Para ulama menjelaskan bahwa ${item.p}. 
+
+Imam Hasan al-Bashri rahimahullah pernah memberikan pencerahan terkait hal ini:
+"${item.u}"
+
+Hadirin wal jamaah rahimakumullah,
+Mengapa poin ini menjadi sangat vital, khususnya di bulan Ramadhan? Karena di bulan yang mulia ini, setiap amalan kita dilipatgandakan nilainya di sisi Allah SWT. Ketika kita menjalankan ibadah puasa, kita tidak hanya dituntut untuk menahan lapar dan dahaga, tetapi juga disyariatkan untuk memperbaiki kualitas ${item.k} kita secara menyeluruh.
+
+Ada tiga langkah praktis yang bisa kita terapkan selama bulan Ramadhan ini:
+
+Pertama, Melakukan Evaluasi Diri (Muhasabah). Jangan sampai hari-hari Ramadhan berlalu tanpa ada perubahan nyata dalam sikap, ibadah, dan pola pikir kita.
+Kedua, Memperdalam Ilmu Syar'i. Pemahaman yang benar terhadap dalil akan melahirkan pengamalan yang ikhlas dan sesuai tuntunan sunnah.
+Ketiga, Istiqamah. Amalan yang dilakukan secara berkesinambungan jauh lebih dicintai oleh Allah daripada amalan besar yang hanya dikerjakan sesekali.
+
+Sebagai penutup, marilah kita senantiasa memohon petunjuk dan kekuatan dari Allah SWT agar kita dijadikan hamba-hamba-Nya yang berhasil memetik hikmah dan keampunan Ramadhan secara utuh.
+
+${arabicPenutup}
+
+Wabillahi taufiq wal hidayah,
+Wassalamu'alaikum Warahmatullahi Wabarakatuh.`;
+            } else {
+                return `Assalamu'alaikum Warahmatullahi Wabarakatuh.
+
+${arabicMukadimah2}
+
+Hadirin dan jamaah sekalian yang dirahmati oleh Allah SWT,
+
+Pertama-tama, marilah kita tingkatkan ketakwaan kita kepada Allah SWT dengan ketakwaan yang sebenar-benarnya, yaitu dengan menjalankan segala perintah-Nya dan menjauhi segala larangan-Nya. Lebih-lebih di dalam bulan suci Ramadhan yang penuh dengan pengampunan dan rahmat ini.
+
+Kultum kita pada kesempatan kali ini mengangkat topik penting, yaitu: "${item.j}".
+
+Para jamaah yang berbahagia,
+Dalam kajian bidang ${item.k}, persoalan ini memegang peranan yang sangat fundamental. Rasulullah SAW dan Al-Qur'anul Karim telah memberikan petunjuk yang terang benderang:
+
+${item.arab}
+
+Maksud dan terjemahan dalil tersebut adalah:
+"${item.d}"
+
+Penjelasan mendalam mengenai rujukan di atas sebagaimana disampaikan oleh para ulama syarah bahwa: ${item.p}.
+
+Prinsip ${item.t} ini juga sangat selaras dengan nasihat pencerahan dari ulama salaf/halaf yang menegaskan:
+"${item.u}"
+
+Hadirin yang dirahmati Allah,
+Di tengah kompleksitas kehidupan modern saat ini, penerapan pesan moral di atas sering kali menghadapi tantangan yang tidak ringan. Oleh karena itu, Ramadhan
